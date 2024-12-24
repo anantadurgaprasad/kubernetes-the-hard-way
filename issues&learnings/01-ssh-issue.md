@@ -8,6 +8,8 @@ I faced issue when running the ssh commands like uname using the while loop scri
 I want run this on multiple hosts one after another I have script as well but it's quits after first one
 root@ip-172-31-57-156:/home/admin# while read IP FQDN HOST SUBNET; do    ssh -i azure-devops.pem admin@${IP} sudo uname -o -m; done < ./kubernetes-the-hard-way/machines.txt
 aarch64 GNU/Linux
+
+
 ChatGPT said:
 ChatGPT
 The issue with your script quitting after processing the first host is likely due to the behavior of ssh. When ssh reads from the same stdin as your while loop, it consumes the input meant for the loop, causing the loop to terminate prematurely.
@@ -66,6 +68,8 @@ Let me know if you need more help!
 
 You said:
 /dev/null solution worked. but I still don't understand the issue . can you give me a deep dive to  what is causing the issue . be as detailed and clear as possible
+
+
 ChatGPT said:
 ChatGPT
 The issue arises because of how ssh and the shell handle standard input (stdin) in combination with the while loop. Let me break this down step by step:
@@ -140,6 +144,8 @@ If you’d like, I can provide additional examples or clarifications!
 
 You said:
 is there any way possible to see which process is using stdin so that I can have visually see while loop and ssh using same stdin
+
+
 ChatGPT said:
 ChatGPT
 Yes, you can inspect the standard input (stdin) usage of processes by leveraging tools like strace or lsof. These tools can show how processes interact with file descriptors, including stdin. Here's how you can observe it in action:
